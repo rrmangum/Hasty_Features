@@ -1,0 +1,9 @@
+.file-upload-pointer {
+    cursor: pointer;
+}
+
+.file-upload-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

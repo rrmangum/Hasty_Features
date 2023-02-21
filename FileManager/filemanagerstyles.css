@@ -1,0 +1,27 @@
+.file-manager-dropdown-menu {
+    position: absolute;
+    inset: 0px auto auto 0px;
+    transform: translate(0px, 40px);
+}
+
+.file-manager-progress-bar {
+    width: 46%;
+}
+
+.file-manager-table-action {
+    width: 80px;
+}
+
+.file-manager-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.file-manager-url-link {
+    color: #6C757D;
+}
+
+.file-manager-grid-view {
+    columns: 2 auto;
+}
