@@ -30,7 +30,12 @@ I created a file manager for use by website administrators. This displays file d
 
 ---
 
-### Feature #3 - File Upload React Component
+### Feature #3 - User Settings Page
+
+![User Settings Page](https://github.com/rrmangum/Hasty_Features/blob/main/Images/user_settings_page.png?raw=true)
+---
+
+### Feature #4 - File Upload React Component
 
 This is a dynamic functional component that is meant to be used by other developers on the team. They can import the component either as a single file upload (renders as an icon) or as multiple file uploads (render as a drop zone). The two different presentations of the component and functionality are tied to props and must be passed to the component when imported in the parent component. This uses the react-dropzone library. The resulting file data returned from the upload file API is wrapped in Formik to make it easier for other developers to access the file url. This component is meant for developers to implement in specific components and therefore does not have a significant styling effort.
 
