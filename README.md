@@ -20,8 +20,12 @@ I built the entire backend for handling file storage, when I started there was n
 
 ### Feature #2 - File Manager
 
+I created a file manager for use by website administrators. This displays file data in a table format with the option of altering the view to a grid/card view. Admins can switch from viewing active files to deleted files, and can chose to restore or delete any file in their database using this component. Additionally admins can follow links to various cloud storage providers. 
 
+### Grid View
 ![File Manager Grid View](https://github.com/rrmangum/Hasty_Features/blob/main/Images/file_manager_grid.png?raw=true)
+
+### Table View
 ![File Manager Table View](https://github.com/rrmangum/Hasty_Features/blob/main/Images/file_manager_table.png?raw=true)
 
 ---
