@@ -32,6 +32,8 @@ I created a file manager for use by website administrators. This displays file d
 
 ### Feature #3 - User Settings Page
 
+This page allows users to update their profile information. It is a secured route that can only be accessed by logged in users. They can change their name, and upload a new profile picture. 
+
 ![User Settings Page](https://github.com/rrmangum/Hasty_Features/blob/main/Images/user_settings_page.png?raw=true)
 ---
 
