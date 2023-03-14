@@ -1,10 +1,10 @@
 import React, { useCallback } from 'react';
+import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { Dropdown, ButtonGroup } from 'react-bootstrap';
 import { useDropzone } from 'react-dropzone';
 import toastr from 'toastr';
 import fileService from '../../services/fileService';
-import 'toastr/build/toastr.css';
 import debug from 'sabio-debug';
 const _logger = debug.extend('FileManager');
 
@@ -38,7 +38,7 @@ export default function FileLinks(props) {
         <div className="page-aside-left">
             <ButtonGroup className="d-block mb-2 btn-group">
                 <Dropdown>
-                    <Dropdown.Toggle className="btn btn-success dropdown-toggle w-100 dropdown-toggle btn btn-primary">
+                    <Dropdown.Toggle className="btn btn-success dropdown-toggle w-100 dropdown-toggle">
                         <i className="mdi mdi-plus" /> Create New{' '}
                     </Dropdown.Toggle>
                     <Dropdown.Menu>
@@ -61,26 +61,26 @@ export default function FileLinks(props) {
                 </Dropdown>
             </ButtonGroup>
             <div className="email-menu-list mt-3">
-                <a href="https://aws.amazon.com/console/" target="_blank" rel="noreferrer">
+                <Link to="https://aws.amazon.com/console/" target="_blank" rel="noreferrer">
                     <i className="mdi mdi-aws font-18 align-middle me-2"></i>
                     S3 Bucket
-                </a>
-                <a href="https://www.google.com/drive/" target="_blank" rel="noreferrer">
+                </Link>
+                <Link to="https://www.google.com/drive/" target="_blank" rel="noreferrer">
                     <i className="mdi mdi-google-drive font-18 align-middle me-2"></i>
                     Google Drive
-                </a>
-                <a href="https://www.dropbox.com/login" target="_blank" rel="noreferrer">
+                </Link>
+                <Link to="https://www.dropbox.com/login" target="_blank" rel="noreferrer">
                     <i className="mdi mdi-dropbox font-18 align-middle me-2"></i>
                     Dropbox
-                </a>
-                <a href="#" onClick={handleFilesView}>
+                </Link>
+                <Link to="#" onClick={handleFilesView}>
                     {props.isDeleted ? (
                         <i className="mdi mdi-file font-18 align-middle me-2"></i>
                     ) : (
                         <i className="mdi mdi-delete font-18 align-middle me-2"></i>
                     )}
                     {props.isDeleted ? 'Active Files' : 'Deleted Files'}
-                </a>
+                </Link>
             </div>
             <div className="mt-5">
                 <h4>

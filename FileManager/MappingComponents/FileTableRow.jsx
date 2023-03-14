@@ -22,19 +22,19 @@ export default function FileTableRow(props) {
         <tr>
             {props.isDeleted ? (
                 <td>
-                    <button type="button" className="btn btn-light" onClick={handleRestoreFile}>
+                    <button type="button" className="btn btn-light shadow rounded" onClick={handleRestoreFile}>
                         <i className="dripicons-time-reverse"></i>
                     </button>
                 </td>
             ) : (
                 <td>
-                    <button type="button" className="btn btn-light" onClick={handleDeleteFile}>
+                    <button type="button" className="btn btn-light shadow rounded" onClick={handleDeleteFile}>
                         <i className="dripicons-cross"></i>
                     </button>
                 </td>
             )}
             <td>
-                <button type="button" className="btn btn-light" onClick={handleFileDownload}>
+                <button type="button" className="btn btn-light shadow rounded" onClick={handleFileDownload}>
                     <i className="dripicons-cloud-download"></i>
                 </button>
             </td>

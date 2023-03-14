@@ -1,12 +1,13 @@
 import React from 'react';
+import { Row } from 'react-bootstrap';
 import PropTypes from 'prop-types';
 import './filemanagerstyles.css';
 
 export default function FileGrid(props) {
     return (
-        <div className="file-manager-grid-view">
-            <div className="mx-n1 g-0 row flex file-manager-grid-view">{props?.fileData?.filesCardComponents}</div>
-        </div>
+        <Row xl={5} lg={4} md={3} sm={2} xs={1}>
+            {props?.fileData?.filesCardComponents}
+        </Row>
     );
 }
 

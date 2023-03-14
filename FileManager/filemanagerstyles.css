@@ -22,6 +22,42 @@
     color: #6C757D;
 }
 
-.file-manager-grid-view {
-    columns: 2 auto;
+.file-card-image {
+    cursor: pointer;
+}
+
+.file-card-no-img {
+    font-size: large;
+    cursor: pointer;
+}
+
+.file-card-image-icon {
+    font-size: 4em;
+    color: rgb(58, 57, 57);
+    top: 50%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+}
+
+.file-card-image:hover {
+    opacity: 0.5;
+}
+
+.file-card-image:hover ~ .file-card-image-icon {
+    opacity: 1;
+}
+
+.file-card-image-overlay {
+    position: relative;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    object-fit: cover;
+    box-shadow: 5px;
 }
