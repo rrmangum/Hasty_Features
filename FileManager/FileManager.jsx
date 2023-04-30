@@ -62,7 +62,6 @@ export default function FileManager() {
 
   const onGetFilesSuccess = (response) => {
     const filesArray = response.item.pagedItems;
-    _logger(response);
     setFileData((prevState) => {
       const newFileData = { ...prevState };
       newFileData.filesTableComponents = filesArray.map(mapFileTable);
@@ -73,7 +72,6 @@ export default function FileManager() {
   };
 
   const onGetFilesError = (error) => {
-    _logger(error);
     toastr.error("Could not retrieve files, please refresh the page.");
   };
 
@@ -185,7 +183,6 @@ export default function FileManager() {
   };
 
   const onFileStatusChangeError = (error) => {
-    _logger(error);
     toastr.error("File status was not updated, please try again.");
   };
 
