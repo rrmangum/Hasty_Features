@@ -1,21 +1,19 @@
-import React, { useState, useEffect, useCallback } from 'react';
-import { Container, Row, Col } from 'react-bootstrap';
-import Pagination from 'rc-pagination';
-import locale from 'rc-pagination/lib/locale/en_US';
-import toastr from 'toastr';
-import Swal from 'sweetalert2';
-import Header from '../../components/elements/Header';
-import FileLinks from './FileLinks';
-import FileTable from './FileTable';
-import FileTableRow from './FileTableRow';
-import FileGrid from './FileGrid';
-import FileCard from './FileCard';
-import fileService from '../../services/fileService';
-import './filemanagerstyles.css';
-import debug from 'sabio-debug';
+import React, { useState, useEffect, useCallback } from "react";
+import { Container, Row, Col } from "react-bootstrap";
+import Pagination from "rc-pagination";
+import locale from "rc-pagination/lib/locale/en_US";
+import toastr from "toastr";
+import Swal from "sweetalert2";
+import Header from "../../components/elements/Header";
+import FileLinks from "./FileLinks";
+import FileTable from "./FileTable";
+import FileTableRow from "./FileTableRow";
+import FileGrid from "./FileGrid";
+import FileCard from "./FileCard";
+import fileService from "../../services/fileService";
+import "./filemanagerstyles.css";
 
-const fileDownload = require('js-file-download');
-const _logger = debug.extend('FileManager');
+const fileDownload = require("js-file-download");
 
 export default function FileManager() {
   const [fileData, setFileData] = useState({
@@ -25,19 +23,24 @@ export default function FileManager() {
     pageIndex: 0,
     pageSize: 10,
     totalCount: 0,
-    searchQuery: '',
+    searchQuery: "",
     isTable: true,
   });
 
   const crumbs = [
-    { name: 'Apps', path: '/apps' },
-    { name: 'File Manager', path: '/apps/file' },
+    { name: "Apps", path: "/apps" },
+    { name: "File Manager", path: "/apps/file" },
   ];
 
   const syncFileData = () => {
     if (fileData.searchQuery) {
       fileService
-        .searchFiles(fileData.pageIndex, fileData.pageSize, fileData.isDeleted, fileData.searchQuery)
+        .searchFiles(
+          fileData.pageIndex,
+          fileData.pageSize,
+          fileData.isDeleted,
+          fileData.searchQuery
+        )
         .then(onGetFilesSuccess)
         .catch(onGetFilesError);
     } else {
@@ -50,7 +53,12 @@ export default function FileManager() {
 
   useEffect(() => {
     syncFileData();
-  }, [fileData.isDeleted, fileData.pageIndex, fileData.pageSize, fileData.searchQuery]);
+  }, [
+    fileData.isDeleted,
+    fileData.pageIndex,
+    fileData.pageSize,
+    fileData.searchQuery,
+  ]);
 
   const onGetFilesSuccess = (response) => {
     const filesArray = response.item.pagedItems;
@@ -66,7 +74,7 @@ export default function FileManager() {
 
   const onGetFilesError = (error) => {
     _logger(error);
-    toastr.error('Could not retrieve files, please refresh the page.');
+    toastr.error("Could not retrieve files, please refresh the page.");
   };
 
   const handleIsDeleted = () => {
@@ -106,36 +114,42 @@ export default function FileManager() {
 
   const handleUpload = useCallback((response) => {
     if (response.items.length > 1) {
-      toastr.success('Files successfully uploaded.');
+      toastr.success("Files successfully uploaded.");
     } else if (response.items.length === 1) {
-      toastr.success('File successfully uploaded.');
+      toastr.success("File successfully uploaded.");
     } else {
-      toastr.error('File was not uploaded, please try again.');
+      toastr.error("File was not uploaded, please try again.");
     }
     syncFileData();
   }, []);
 
   const handleDeleteFile = useCallback((aFile) => {
     Swal.fire({
-      title: 'Are you sure?',
-      icon: 'warning',
+      title: "Are you sure?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Yes, delete it!',
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+        Swal.fire("Deleted!", "Your file has been deleted.", "success");
         const deleteFileHandler = getSuccessHandler(aFile.id);
-        fileService.changeFileStatus(aFile.id).then(deleteFileHandler).catch(onFileStatusChangeError);
+        fileService
+          .changeFileStatus(aFile.id)
+          .then(deleteFileHandler)
+          .catch(onFileStatusChangeError);
       }
     });
   }, []);
 
   const handleRestoreFile = useCallback((aFile) => {
     const restoreFileHandler = getSuccessHandler(aFile.id);
-    fileService.changeFileStatus(aFile.id).then(restoreFileHandler).catch(onFileStatusChangeError);
-    toastr.success('File successfully restored.');
+    fileService
+      .changeFileStatus(aFile.id)
+      .then(restoreFileHandler)
+      .catch(onFileStatusChangeError);
+    toastr.success("File successfully restored.");
   }, []);
 
   const getSuccessHandler = (id) => {
@@ -144,12 +158,14 @@ export default function FileManager() {
       newFileData.filesTableComponents = [...newFileData.filesTableComponents];
       newFileData.filesCardComponents = [...newFileData.filesCardComponents];
 
-      const indexOfTable = newFileData.filesTableComponents.findIndex((file) => {
-        if (file.props.file.id === id) {
-          return true;
+      const indexOfTable = newFileData.filesTableComponents.findIndex(
+        (file) => {
+          if (file.props.file.id === id) {
+            return true;
+          }
+          return false;
         }
-        return false;
-      });
+      );
       if (indexOfTable >= 0) {
         newFileData.filesTableComponents.splice(indexOfTable, 1);
       }
@@ -170,7 +186,7 @@ export default function FileManager() {
 
   const onFileStatusChangeError = (error) => {
     _logger(error);
-    toastr.error('File status was not updated, please try again.');
+    toastr.error("File status was not updated, please try again.");
   };
 
   const handleDownloadFile = useCallback((aFile) => {
@@ -238,25 +254,46 @@ export default function FileManager() {
                           type="text"
                           name="searchQuery"
                           className="form-control"
-                          placeholder={fileData.isDeleted ? 'Search deleted files...' : 'Search active files...'}
+                          placeholder={
+                            fileData.isDeleted
+                              ? "Search deleted files..."
+                              : "Search active files..."
+                          }
                           onChange={handleSearch}
                         />
-                        <span className="mdi mdi-magnify search-icon pt-2" role="button"></span>
+                        <span
+                          className="mdi mdi-magnify search-icon pt-2"
+                          role="button"
+                        ></span>
                       </div>
                     </form>
                   </div>
                   <div>
-                    <button type="submit" className="btn btn-sm btn-light" onClick={handleTableView}>
+                    <button
+                      type="submit"
+                      className="btn btn-sm btn-light"
+                      onClick={handleTableView}
+                    >
                       <i className="mdi mdi-format-list-bulleted"></i>
                     </button>
-                    <button type="submit" className="btn btn-sm" onClick={handleGridView}>
+                    <button
+                      type="submit"
+                      className="btn btn-sm"
+                      onClick={handleGridView}
+                    >
                       <i className="mdi mdi-view-grid"></i>
                     </button>
                   </div>
                 </div>
                 <div className="mt-3">
-                  <h5 className="mb-3">{fileData.isDeleted ? 'Deleted Files' : 'Active Files'}</h5>
-                  {fileData.isTable ? <FileTable fileData={fileData} /> : <FileGrid fileData={fileData} />}
+                  <h5 className="mb-3">
+                    {fileData.isDeleted ? "Deleted Files" : "Active Files"}
+                  </h5>
+                  {fileData.isTable ? (
+                    <FileTable fileData={fileData} />
+                  ) : (
+                    <FileGrid fileData={fileData} />
+                  )}
                   <Row>
                     <Pagination
                       className="ant-pagination mt-3 file-manager-center"
