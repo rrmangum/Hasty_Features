@@ -4,6 +4,7 @@ import Pagination from "rc-pagination";
 import locale from "rc-pagination/lib/locale/en_US";
 import toastr from "toastr";
 import Swal from "sweetalert2";
+import fileDownload from "js-file-download";
 import Header from "../../components/elements/Header";
 import FileLinks from "./FileLinks";
 import FileTable from "./FileTable";
@@ -12,8 +13,6 @@ import FileGrid from "./FileGrid";
 import FileCard from "./FileCard";
 import fileService from "../../services/fileService";
 import "./filemanagerstyles.css";
-
-const fileDownload = require("js-file-download");
 
 export default function FileManager() {
   const [fileData, setFileData] = useState({
