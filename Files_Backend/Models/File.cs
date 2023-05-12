@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Sabio.Models.Domain.Files
+namespace Hasty.Models.Domain.Files
 {
     public class File : BaseFile
     {	

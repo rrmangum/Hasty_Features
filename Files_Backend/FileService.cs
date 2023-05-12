@@ -1,24 +1,24 @@
 ﻿using Amazon;
 using Amazon.S3;
 using Amazon.S3.Transfer;
-using Sabio.Data.Providers;
+using Hasty.Data.Providers;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
-using Sabio.Models;
-using Sabio.Services.Interfaces;
-using Sabio.Data;
-using Sabio.Models.Domain;
+using Hasty.Models;
+using Hasty.Services.Interfaces;
+using Hasty.Data;
+using Hasty.Models.Domain;
 using System;
-using File = Sabio.Models.Domain.Files.File;
+using File = Hasty.Models.Domain.Files.File;
 using Microsoft.AspNetCore.Http;
-using Sabio.Models.AppSettings;
+using Hasty.Models.AppSettings;
 using Microsoft.Extensions.Options;
-using Sabio.Models.Enums;
-using Sabio.Models.Domain.Files;
+using Hasty.Models.Enums;
+using Hasty.Models.Domain.Files;
 using System.Globalization;
 
-namespace Sabio.Services
+namespace Hasty.Services
 {
 	public class FileService : IFileService
 	{
@@ -167,7 +167,7 @@ namespace Sabio.Services
 
 		public List<BaseFile> Add(List<IFormFile> files, int userId)
 		{
-			const string bucketName = "sabio-training";
+			const string bucketName = "Hasty-training";
 			RegionEndpoint bucketRegion = RegionEndpoint.USWest2;
 			s3Client = new AmazonS3Client(_awsKeys.AccessKey, _awsKeys.SecretKey, bucketRegion);
 			var fileTransferUtility = new TransferUtility(s3Client);

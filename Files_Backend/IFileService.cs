@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Http;
-using Sabio.Models;
-using Sabio.Models.Domain.Files;
+using Hasty.Models;
+using Hasty.Models.Domain.Files;
 using System.Collections.Generic;
 
-namespace Sabio.Services.Interfaces
+namespace Hasty.Services.Interfaces
 {
     public interface IFileService
     {
